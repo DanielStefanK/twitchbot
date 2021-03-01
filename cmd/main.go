@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/DanielStefanK/twitchbot/internal/config"
 	"github.com/DanielStefanK/twitchbot/internal/logger"
-	"github.com/DanielStefanK/twitchbot/internal/logger/config"
-	"github.com/DanielStefanK/twitchbot/internal/logger/storage"
+	"github.com/DanielStefanK/twitchbot/internal/storage"
 
 	"github.com/DanielStefanK/twitchbot/pkg/bot"
 	"gorm.io/driver/sqlite"

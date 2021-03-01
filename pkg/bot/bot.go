@@ -3,7 +3,7 @@ package bot
 import (
 	"fmt"
 
-	"github.com/DanielStefanK/twitchbot/internal/logger/storage"
+	"github.com/DanielStefanK/twitchbot/internal/storage"
 
 	"github.com/DanielStefanK/twitchbot/internal/logger"
 	"github.com/gempir/go-twitch-irc/v2"
@@ -50,7 +50,7 @@ func (b *Bot) incomingMsg(msg twitch.PrivateMessage) {
 		if cmd == c.Cmd {
 			c.Handler(b.db, msg, func(replyMsg string) {
 				b.SendMsg(msg.Channel, replyMsg)
-			})
+			}, b.client)
 			return
 		}
 	}
@@ -60,4 +60,13 @@ func (b *Bot) incomingMsg(msg twitch.PrivateMessage) {
 func (b *Bot) SendMsg(channel, msg string) {
 	log.Info(fmt.Sprintf("sending message to channel %s", channel))
 	b.client.Say(channel, msg)
+}
+
+// Join joins a channel
+func (b *Bot) Join(channels ...string) {
+	for _, c := range channels {
+		log.Info(fmt.Sprintf("joining channel %s", c))
+		b.client.Join()
+		b.RefreshConf(c)
+	}
 }

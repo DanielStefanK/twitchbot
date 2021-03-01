@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/DanielStefanK/twitchbot/internal/logger/storage"
+	"github.com/DanielStefanK/twitchbot/internal/storage"
 	"gorm.io/gorm"
 )
 
@@ -24,6 +24,8 @@ func (b *Bot) createDefaultConfig(c string) {
 	config := &storage.ChatConfig{}
 	config.Channel = c
 	config.Internal = allEnabled
+	b.db.Save(config)
+	b.configs[c] = config
 }
 
 // RefreshConf refreshes the config for the given channel
@@ -35,6 +37,7 @@ func (b *Bot) RefreshConf(c string) {
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		b.configs[c] = config
 	} else {
-		log.Warn(fmt.Sprintf("cold not find a config for channel %s", c))
+		log.Info(fmt.Sprintf("cold not find a config for channel %s", c))
+		log.Info(fmt.Sprintf("creating a default one"))
 	}
 }
