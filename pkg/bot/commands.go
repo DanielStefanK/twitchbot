@@ -7,6 +7,7 @@ import (
 
 	"github.com/nicklaw5/helix"
 
+	"github.com/DanielStefanK/twitchbot/pkg/bot/horoscope"
 	owm "github.com/briandowns/openweathermap"
 	"github.com/gempir/go-twitch-irc/v2"
 	"gorm.io/gorm"
@@ -116,4 +117,22 @@ func weather(db *gorm.DB, msg twitch.PrivateMessage, reply replyFunc, bot *Bot) 
 	strings.Join(weathers, ", ")
 
 	reply(fmt.Sprintf("current weather in %s: %s", w.Name, strings.Join(weathers, ", ")))
+}
+
+func horoscopeCmd(db *gorm.DB, msg twitch.PrivateMessage, reply replyFunc, bot *Bot) {
+	params := getParams(msg.Message)
+
+	if len(params) == 0 {
+		reply("Please specify your sign")
+		return
+	}
+
+	text := horoscope.GetHoroscope(params[0])
+
+	if text == "" {
+		reply("Could not find you horoscope")
+		return
+	}
+
+	reply(fmt.Sprintf("Horoscope for %s: %s", params[0], text))
 }

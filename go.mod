@@ -3,6 +3,7 @@ module github.com/DanielStefanK/twitchbot
 go 1.15
 
 require (
+	github.com/PuerkitoBio/goquery v1.6.1
 	github.com/briandowns/openweathermap v0.16.0
 	github.com/gempir/go-twitch-irc/v2 v2.5.0
 	github.com/nicklaw5/helix v1.6.0

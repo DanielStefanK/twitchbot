@@ -31,7 +31,7 @@ var allCommands = [15]*Command{
 	&Command{Cmd: "so", DBNum: calNumber(0), Help: "Shoutout other streams", Handler: shoutOut},
 	&Command{Cmd: "time", DBNum: calNumber(1), Help: "Get the time in the given country/city", Handler: timeCmd},
 	&Command{Cmd: "weather", DBNum: calNumber(2), Help: "Get the weather in the given city", Handler: weather},
-	&Command{Cmd: "horoscope", DBNum: calNumber(3), Help: "Get the current horoscope", Handler: devHandler},
+	&Command{Cmd: "horoscope", DBNum: calNumber(3), Help: "Get the current horoscope", Handler: horoscopeCmd},
 	&Command{Cmd: "gamble", DBNum: calNumber(4), Help: "Gamble with you channel points", Handler: devHandler},
 	&Command{Cmd: "pat", DBNum: calNumber(5), Help: "Pat a user", Handler: func(db *gorm.DB, msg twitch.PrivateMessage, reply replyFunc, bot *Bot) {
 		params := getParams(msg.Message)

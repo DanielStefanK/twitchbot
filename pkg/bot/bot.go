@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/DanielStefanK/twitchbot/internal/config"
+	"github.com/DanielStefanK/twitchbot/pkg/bot/horoscope"
 
 	"github.com/DanielStefanK/twitchbot/internal/storage"
 	"github.com/nicklaw5/helix"
@@ -52,6 +53,9 @@ func NewBot(cfg *config.Config, channels []string, db *gorm.DB) *Bot {
 	// twitch bot
 
 	client := twitch.NewClient(cfg.Bot.Username, cfg.Bot.OAuth)
+
+	// horoscope
+	horoscope.StartIntervalScraping()
 
 	// maps api
 	// c, err := maps.NewClient(maps.WithAPIKey(cfg.Bot.MapsAPIToken))

@@ -17,7 +17,7 @@ type Config struct {
 		ClientID     string `yaml:"clientId"`
 		ClientSecret string `yaml:"clientSecret"`
 		//MapsAPIToken string `yaml:"mapsAPIKey"`
-		openWeatherAPI string `yaml:"openWeatherAPI"`
+		OpenWeatherAPI string `yaml:"openWeatherAPI"`
 	} `yaml:"bot"`
 }
 
