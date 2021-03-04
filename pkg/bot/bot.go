@@ -17,11 +17,12 @@ var log = logger.NewLogger("bot")
 
 // Bot used for communicating to twitch chats
 type Bot struct {
-	client    *twitch.Client
-	db        *gorm.DB
-	channels  []string
-	configs   map[string]*storage.ChatConfig
-	twitchAPI *helix.Client
+	client     *twitch.Client
+	db         *gorm.DB
+	channels   []string
+	configs    map[string]*storage.ChatConfig
+	twitchAPI  *helix.Client
+	weatherAPI string
 	// mapsAPI   *maps.Client
 }
 
@@ -60,7 +61,7 @@ func NewBot(cfg *config.Config, channels []string, db *gorm.DB) *Bot {
 	// 	panic(err)
 	// }
 
-	bot := &Bot{client: client, db: db, channels: channels, twitchAPI: twitchAPI}
+	bot := &Bot{client: client, db: db, channels: channels, twitchAPI: twitchAPI, weatherAPI: cfg.Bot.OpenWeatherAPI}
 
 	bot.reloadConfigs()
 
