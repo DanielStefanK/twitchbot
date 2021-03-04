@@ -26,7 +26,7 @@ func main() {
 	storage.Migrate(db)
 
 	log.Info("creating bot")
-	bot.NewBot(cfg.Bot.Username, cfg.Bot.OAuth, []string{"im_qt"}, db)
+	bot.NewBot(cfg, []string{"im_qt"}, db)
 
 	for {
 

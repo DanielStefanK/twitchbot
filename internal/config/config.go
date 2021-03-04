@@ -12,8 +12,11 @@ var log = logger.NewLogger("config")
 // Config parameter that are available
 type Config struct {
 	Bot struct {
-		Username string `yaml:"username"`
-		OAuth    string `yaml:"oauth"`
+		Username     string `yaml:"username"`
+		OAuth        string `yaml:"oauth"`
+		ClientID     string `yaml:"clientId"`
+		ClientSecret string `yaml:"clientSecret"`
+		MapsAPIToken string `yaml:"mapsAPIKey"`
 	} `yaml:"bot"`
 }
 
