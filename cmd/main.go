@@ -13,9 +13,8 @@ import (
 var log = logger.NewLogger("main")
 
 func main() {
-	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
-
 	cfg := config.LoadConfig()
+	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 
 	if err != nil {
 		log.Error("failed to connect to db")
